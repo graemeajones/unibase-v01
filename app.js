@@ -6,6 +6,7 @@ import modulesRouter from './routers/modules-router.js';
 import usersRouter from './routers/users-router.js';
 import usertypesRouter from './routers/usertypes-router.js';
 import yearsRouter from './routers/years-router.js';
+import tablesRouter from './routers/tables-router.js';
 
 // Configure express app -------------------------
 const app = express();
@@ -29,6 +30,7 @@ app.use('/api/modules', modulesRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/usertypes', usertypesRouter);
 app.use('/api/years', yearsRouter);
+app.use('/api/tables', tablesRouter);
 
 // Start server ----------------------------------
 const PORT = process.env.PORT || 5000;

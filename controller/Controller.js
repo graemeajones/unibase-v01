@@ -6,6 +6,19 @@ export class Controller {
 
   // Methods ---------------------------------------
 
+  listWithID = async (req, res) => {
+    // Validate request
+    const { isError, message: validatorMessage } = this.validator.validateID(req.params.id);
+    if (isError) return res.status(400).json({ message: validatorMessage });
+
+    // Access data model
+    const { isSuccess, result, message: accessorMessage } = await this.accessor.list(req.params.id);
+    if(!isSuccess) return res.status(400).json({ message: accessorMessage });
+
+    // Response to request
+    res.json(result);
+  };
+
   list = async (req, res) => {
     // Validate request
     // No validation required

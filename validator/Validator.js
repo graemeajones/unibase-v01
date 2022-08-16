@@ -11,7 +11,7 @@ class Validator {
   validate(schema, value) {
     const { error } = schema.validate(value, { abortEarly: false, escapeHtml: true });
     return error
-      ? { isError: true, message: this.reportErrors(error) }
+      ? { isError: true, message: `[UniBase validator] ${this.reportErrors(error)}` }
       : { isError: false, message: null };
   }
 

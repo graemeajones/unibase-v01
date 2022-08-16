@@ -19,7 +19,7 @@ dbStructure.extendedFields = `${dbStructure.fields},YearName AS ModuleYearName,C
 
 // Conformance -----------------------------------
 const dbConformance = {};
-const deleteUnwantedFields = (prevObj, currField) => { if(!mutableFields.includes(currField)) delete prevObj[curr]; return prevObj; };
+const deleteUnwantedFields = (prevObj, currField) => { if(!mutableFields.includes(currField)) delete prevObj[currField]; return prevObj; };
 dbConformance.objToRecord = (obj) => Object.keys(obj).reduce(deleteUnwantedFields, obj );
 dbConformance.recordToObj = (record) => record;
 

@@ -13,7 +13,7 @@ const objSchema = joi.object({
   UserRegistered: joi.boolean(),
   UserUsertypeID: joi.number().integer().allow(null),
   UserYearID: joi.number().integer().allow(null),
-  UserLevel: joi.number().integer().min(3).max(7),
+  UserLevel: joi.number().integer().min(3).max(7).allow(0),
   UserImageURL: joi.string().uri()
 }).unknown(true);
 

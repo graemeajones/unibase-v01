@@ -9,7 +9,6 @@ const mutableFields = [
   'UserFirstname',
   'UserLastname',
   'UserEmail',
-  'UserPassword',
   'UserRegistered',
   'UserUsertypeID',
   'UserLevel',
@@ -22,7 +21,8 @@ dbStructure.extendedFields = `${dbStructure.fields},YearName AS UserYearName,Use
 
 // Conformance -----------------------------------
 const dbConformance = {};
-dbConformance.objToRecord = (obj) => obj;
+const deleteUnwantedFields = (prevObj, currField) => { if(!mutableFields.includes(currField)) delete prevObj[currField]; return prevObj; };
+dbConformance.objToRecord = (obj) => Object.keys(obj).reduce(deleteUnwantedFields, obj );
 dbConformance.recordToObj = (record) => { return { ...record, UserRegistered: record.UserRegistered ? true : false }; }
 
 export default { dbConn, dbStructure, dbConformance };
