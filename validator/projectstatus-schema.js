@@ -5,12 +5,12 @@ import joi from 'joi';
 const idSchema = joi.number().integer().min(1).required();
 
 const objSchema = joi.object({
-  UsertypeID: joi.number().integer(),
-  UsertypeName: joi.string().min(3)
+  ProjectstatusID: joi.number().integer(),
+  ProjectstatusName: joi.string().min(3)
 });
 
 const mutableKeys = [
-  'UsertypeName'
+  'ProjectstatusName'
 ];
 
 const createSchema = objSchema.and(...mutableKeys);

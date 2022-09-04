@@ -22,7 +22,7 @@ class Accessor {
     const sql = `INSERT INTO ${this.table} ${this.buildSetTemplate(record)}`;
     try {
       const status = await this.dbConn.query(sql, record);
-      const {isSuccess, result, message } = await this.read(status[0].insertId);
+      const { isSuccess, result, message } = await this.read(status[0].insertId);
       return isSuccess
         ? { isSuccess: true, result: this.conformRecordToObj(result), message: "Record successfully inserted" }
         : { isSuccess: false, result: null, message: `Failed to recover inserted record: ${message}` };

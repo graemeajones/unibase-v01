@@ -5,12 +5,13 @@ import joi from 'joi';
 const idSchema = joi.number().integer().min(1).required();
 
 const objSchema = joi.object({
-  UsertypeID: joi.number().integer(),
-  UsertypeName: joi.string().min(3)
-});
+  GroupID: joi.number().integer(),
+  GroupName: joi.string().min(8),
+  GroupProjectID: joi.number().integer().allow(null)
+}).unknown(true);
 
 const mutableKeys = [
-  'UsertypeName'
+  'GroupName', 'GroupProjectID'
 ];
 
 const createSchema = objSchema.and(...mutableKeys);
@@ -18,6 +19,6 @@ const createSchema = objSchema.and(...mutableKeys);
 const updateSchema = joi.object({
   id: idSchema,
   obj: objSchema.or(...mutableKeys)
-}).unknown(true);
+});
 
 export default { idSchema, createSchema, updateSchema };
